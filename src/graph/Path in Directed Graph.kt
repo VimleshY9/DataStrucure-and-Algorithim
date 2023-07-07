@@ -1,33 +1,46 @@
 package graph
 
+import java.util.*
+
 class `Path in Directed Graph` {
     fun solve(A: Int, B: Array<IntArray>): Int {
-        val graph = HashMap<Int, MutableList<Int>>()
-        val visited = HashSet<Int>()
-        for (edge in B) {
-            if (!graph.containsKey(edge[0])) {
-                graph[edge[0]] = mutableListOf()
+        val g = buildAdjacencyList(A, B)
+        val vis = BooleanArray(A + 1)
+        for (i in 1..A) {
+            if (!vis[i]) {
+                BFS(g, 1, A, vis)
             }
-            graph[edge[0]]!!.add(edge[1])
         }
+        val isPath = vis[A]
+        return if (isPath) 1 else 0
+    }
 
-        // Define a DFS (Depth-First Search) function to traverse the graph
-        fun dfs(node: Int): Boolean {
-            if (node == A) {
-                return true
-            }
-            visited.add(node)
-            for (neighbor in graph[node] ?: emptyList()) {
-                if (neighbor !in visited) {
-                    if (dfs(neighbor)) {
-                        return true
-                    }
+    private fun BFS(g: MutableList<MutableList<Int>>, s: Int, d: Int, vis: BooleanArray) {
+        val q: Queue<Int> = LinkedList()
+        q.add(s)
+        vis[s] = true
+        while (q.size > 0) {
+            val u = q.poll()
+            for (i in g[u].indices) {
+                val v = g[u][i]
+                if (!vis[v]) {
+                    q.add(v)
+                    vis[v] = true
                 }
             }
-            return false
         }
+    }
 
-        return if (dfs(1)) 1 else 0
+    private fun buildAdjacencyList(A: Int, B: Array<IntArray>): MutableList<MutableList<Int>> {
+        var g = MutableList(A+1){
+            mutableListOf<Int>()}
+
+        for (i in B.indices) {
+            val u = B[i][0]
+            val v = B[i][1]
+            g[u].add(v)
+        }
+        return g
     }
 
 }
