@@ -28,3 +28,7 @@ class `Number Smaller Than The Current Number` {
         return ans
     }
 }
+
+fun main(){
+
+}
