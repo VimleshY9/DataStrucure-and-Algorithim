@@ -11,9 +11,7 @@ class `Implement Power Function` {
         if(B==1){
             return A
         }
-
-            return ((B%C)*(power(A, B-1, C)%C)%C)
-
+     return ((B%C)*(power(A, B-1, C)%C)%C)
     }
 }
 

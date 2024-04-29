@@ -19,17 +19,16 @@ end - number of the tower to which the disk is being moved
 * */
 class `Tower of Hanoi` {
     var count = 0
-    fun towerOfHanoi(A: Int): Array<IntArray> {
-        var p = pow(A)
-        return solve(A, 1, 3, 2,Array(p-1){IntArray(3)})
+    fun towerOfHanoi(A: Int): ArrayList<ArrayList<Int>> {
+//        var p = pow(A)
+        return solve(A, 1, 3, 2, ArrayList<ArrayList<Int>>())
     }
 
-    fun solve(n:Int, a:Int, c:Int, b:Int, arr:Array<IntArray> ):Array<IntArray>
+    fun solve(n:Int, a:Int, c:Int, b:Int, arr:ArrayList<ArrayList<Int>> ):ArrayList<ArrayList<Int>>
     {
         if(n==0) return arr
         solve(n-1, a, b, c, arr)
-        arr[count]=intArrayOf(n, a, c)
-        count++
+        arr.add(arrayListOf(n, a,c))
         solve(n-1, b, c, a, arr)
         return arr
     }
@@ -45,3 +44,9 @@ class `Tower of Hanoi` {
     }
 }
 
+fun main(){
+    `Tower of Hanoi`().towerOfHanoi(3).forEach {
+        println(it)
+    }
+
+}

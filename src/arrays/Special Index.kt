@@ -31,7 +31,7 @@ class `Special Index` {
                     oddsum = oddps[i - 1] + (evenps[evenps.size - 1] - evenps[i - 1])
                 }
             } else {
-                evensum = oddps[oddps.size - 1]
+                evensum = oddps[oddps.size - 1] - A[i]
                 oddsum = evenps[oddps.size - 1] - evenps[0]
             }
             if (evensum == oddsum) {

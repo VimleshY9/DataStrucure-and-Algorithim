@@ -32,12 +32,12 @@ The left child of all nodes should be NULL.
 
 
 public class Flatten_Binary_Tree_to_Linked_List {
-    public TreeNode flattenTheTree(TreeNode a) {
-        TreeNode head = a;
+    public TreeNode1 flattenTheTree(TreeNode1 a) {
+        TreeNode1 head = a;
         flatten(a);
         return head;
     }
-    public void flatten(TreeNode root) {
+    public void flatten(TreeNode1 root) {
         if (root == null) {
             return;
         }
@@ -50,11 +50,11 @@ public class Flatten_Binary_Tree_to_Linked_List {
             flatten(root.right);
         }
 
-        TreeNode rightSubtree = root.right;
+        TreeNode1 rightSubtree = root.right;
         root.right = root.left;
         root.left = null;
 
-        TreeNode current = root;
+        TreeNode1 current = root;
         while (current.right != null) {
             current = current.right;
         }
@@ -64,11 +64,11 @@ public class Flatten_Binary_Tree_to_Linked_List {
 
 }
 
-class TreeNode {
+class TreeNode1 {
     int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int x) {
+    TreeNode1 left;
+    TreeNode1 right;
+    TreeNode1(int x) {
         val = x;
     }
 }
